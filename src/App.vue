@@ -5,8 +5,14 @@
 </template>
 
 <script>
+import { fetchRepositories } from './api/BitBucketApi'
+
 export default {
   name: 'App',
+  mounted: async function () {
+    const result = await fetchRepositories("yanapiidxer")
+    console.log(result)
+  }
 }
 </script>
 
