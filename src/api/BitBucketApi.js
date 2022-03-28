@@ -57,3 +57,17 @@ export const fetchRepositoryInfo = (accessToken, ownerName, repositoryName) => {
         }
     })
 }
+
+/**
+ * プルリクエストリストを取得
+ * @param {String} accessToken アクセストークン
+ * @param {String} ownerName 所有者名
+ * @param {String} repositoryName リポジトリ名
+ */
+export const fetchPullRequests = (accessToken, ownerName, repositoryName) => {
+    return bitBucketApi.get(`repositories/${ownerName}/${repositoryName}/pullrequests`, {
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+        }
+    })
+}

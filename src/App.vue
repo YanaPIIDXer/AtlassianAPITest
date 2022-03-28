@@ -1,12 +1,12 @@
 <template>
-  <div id="app">
+  <div id="app" v-if="accessToken">
     <PullRequestList />
   </div>
 </template>
 
 <script>
 import { fetchAccessToken } from './api/BitBucketApi'
-import { mapMutations } from 'vuex'
+import { mapMutations, mapGetters } from 'vuex'
 import PullRequestList from './components/PullRequestList'
 
 export default {
@@ -17,6 +17,9 @@ export default {
   created: async function () {
     const accessToken = await fetchAccessToken(process.env.VUE_APP_ACCESS_KEY, process.env.VUE_APP_ACCESS_SECRET)
     this.setAccessToken(accessToken)
+  },
+  computed: {
+    ...mapGetters(["accessToken"])
   },
   methods: {
     ...mapMutations(["setAccessToken"]),
