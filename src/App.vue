@@ -5,8 +5,17 @@
 </template>
 
 <script>
+import { fetchAccessKey, fetchRepositories } from './api/BitBucketApi'
+
 export default {
   name: 'App',
+  mounted: async function () {
+    const accessKey = await fetchAccessKey(process.env.VUE_APP_ACCESS_KEY, process.env.VUE_APP_ACCESS_SECRET)
+    console.log(accessKey)
+    
+    const result = await fetchRepositories("yanapiidxer")
+    console.log(result)
+  }
 }
 </script>
 
