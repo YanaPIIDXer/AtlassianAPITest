@@ -5,20 +5,20 @@
 </template>
 
 <script>
-import { fetchAccessKey, fetchRepositories } from './api/BitBucketApi'
+import { fetchAccessToken, fetchRepositories } from './api/BitBucketApi'
 import { mapMutations } from 'vuex'
 
 export default {
   name: 'App',
   mounted: async function () {
-    const accessKey = await fetchAccessKey(process.env.VUE_APP_ACCESS_KEY, process.env.VUE_APP_ACCESS_SECRET)
-    this.setAccessKey(accessKey)
+    const accessToken = await fetchAccessToken(process.env.VUE_APP_ACCESS_KEY, process.env.VUE_APP_ACCESS_SECRET)
+    this.setAccessToken(accessToken)
     
-    const result = await fetchRepositories("yanapiidxer")
+    const result = await fetchRepositories(accessToken, "yanapiidxer")
     console.log(result)
   },
   methods: {
-    ...mapMutations(["setAccessKey"]),
+    ...mapMutations(["setAccessToken"]),
   }
 }
 </script>

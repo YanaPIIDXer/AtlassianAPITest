@@ -3,11 +3,11 @@ import qs from 'qs'
 import { bitBucketApi } from './ApiBase'
 
 /**
- * アクセスキーを取得
+ * アクセストークンを取得
  * @param {String} key キー
  * @param {String} secret シークレット
  */
-export const fetchAccessKey = (key, secret) => {
+export const fetchAccessToken = (key, secret) => {
     const authInfo = {
         username: key,
         password: secret,
@@ -33,17 +33,27 @@ export const fetchAccessKey = (key, secret) => {
 
 /**
  * リポジトリリストを取得
- * @param {String}} ownerName 
+ * @param {String} accessToken アクセストークン
+ * @param {String}} ownerName 所有者名
  */
-export const fetchRepositories = (ownerName) => {
-    return bitBucketApi.get(`repositories/${ownerName}`)
+export const fetchRepositories = (accessToken, ownerName) => {
+    return bitBucketApi.get(`repositories/${ownerName}`, {
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+        }
+    })
 }
 
 /**
  * リポジトリ情報を取得
+ * @param {String} accessToken アクセストークン
  * @param {String} ownerName 所有者名
  * @param {String} repositoryName リポジトリ名
  */
-export const fetchRepositoryInfo = (ownerName, repositoryName) => {
-    return bitBucketApi.get(`repositories/${ownerName}/${repositoryName}`)
+export const fetchRepositoryInfo = (accessToken, ownerName, repositoryName) => {
+    return bitBucketApi.get(`repositories/${ownerName}/${repositoryName}`, {
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+        }
+    })
 }
