@@ -1,16 +1,20 @@
 <template>
   <div id="app">
-    Hello, World.
+    <PullRequestList />
   </div>
 </template>
 
 <script>
 import { fetchAccessToken } from './api/BitBucketApi'
 import { mapMutations } from 'vuex'
+import PullRequestList from './components/PullRequestList'
 
 export default {
   name: 'App',
-  mounted: async function () {
+  components: {
+    PullRequestList,
+  },
+  created: async function () {
     const accessToken = await fetchAccessToken(process.env.VUE_APP_ACCESS_KEY, process.env.VUE_APP_ACCESS_SECRET)
     this.setAccessToken(accessToken)
   },
