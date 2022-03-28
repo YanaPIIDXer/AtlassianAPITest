@@ -3,13 +3,13 @@ import axios from 'axios'
 /**
  * BitBucket API
  */
-export const bitBucketApi = new axios({
+export const bitBucketApi = axios.create({
     baseURL: "https://api.bitbucket.org/2.0/",
 })
 
 /**
  * JIRA API
  */
-export const jiraApi = new axios({
+export const jiraApi = axios.create({
     baseURL: "https://yanapiidxer.atlassian.net/rest/api/2/",
 })
