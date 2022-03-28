@@ -6,15 +6,19 @@
 
 <script>
 import { fetchAccessKey, fetchRepositories } from './api/BitBucketApi'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'App',
   mounted: async function () {
     const accessKey = await fetchAccessKey(process.env.VUE_APP_ACCESS_KEY, process.env.VUE_APP_ACCESS_SECRET)
-    console.log(accessKey)
+    this.setAccessKey(accessKey)
     
     const result = await fetchRepositories("yanapiidxer")
     console.log(result)
+  },
+  methods: {
+    ...mapMutations(["setAccessKey"]),
   }
 }
 </script>
