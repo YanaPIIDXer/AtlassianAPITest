@@ -35,6 +35,9 @@ export default {
         ...mapGetters(['bitBucketAccessToken']),
     },
     methods: {
+        /**
+         * プルリクエストにコメント追加
+         */
         async addComment(prId) {
             const result = await addCommentToPullRequest(this.bitBucketAccessToken, 'yanapiidxer', 'vuetestproject', prId, "コメント")
             if (result.status !== 201) {

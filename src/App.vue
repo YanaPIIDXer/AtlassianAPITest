@@ -22,6 +22,10 @@ export default {
   },
   methods: {
     ...mapMutations(["setBitBucketAccessToken"]),
+
+    /**
+     * BitBucketのアクセストークンを取得
+     */
     fetchBitBucketAccessToken: async function () {
       const token = await fetchAccessToken(process.env.VUE_APP_BITBUCKET_ACCESS_KEY, process.env.VUE_APP_BITBUCKET_ACCESS_SECRET)
       this.setBitBucketAccessToken(token)

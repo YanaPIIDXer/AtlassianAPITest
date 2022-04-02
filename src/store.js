@@ -8,11 +8,17 @@ const store = new Vuex.Store({
         bitBucketAccessToken: '',
     },
     getters: {
+        /**
+         * BitBucketのアクセストークン
+         */
         bitBucketAccessToken: (state) => {
             return state.bitBucketAccessToken
         },
     },
     mutations: {
+        /**
+         * BitBucketのアクセストークンをセット
+         */
         setBitBucketAccessToken: (state, payload) => {
             state.bitBucketAccessToken = payload
         },
