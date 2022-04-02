@@ -17,12 +17,13 @@ export default {
          * ログイン処理
          */
         logIn: async function () {
-            if (await !this.fetchBitBucketAccessToken()) {
+            let result = await this.fetchBitBucketAccessToken()
+            if (!result) {
                 alert("BitBucketのアクセストークン取得に失敗しました")
                 return
             }
 
-            this.$router.push({name: "Top"})
+            this.$router.push({name: "PullRequest"})
         },
 
         /**

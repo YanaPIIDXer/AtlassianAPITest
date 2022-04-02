@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '../views/Login.vue'
-import Top from '../views/Top.vue'
+import PullRequestList from '../components/PullRequestList.vue'
 
 Vue.use(Router)
 
@@ -14,9 +14,9 @@ export default new Router({
             component: Login,
         },
         {
-            name: "Top",
-            path: "/top",
-            component: Top,
+            name: "PullRequest",
+            path: "/pull_request",
+            component: PullRequestList,
         },
     ],
 })
