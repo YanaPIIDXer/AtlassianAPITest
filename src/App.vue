@@ -1,5 +1,5 @@
 <template>
-  <div id="app" v-if="accessToken">
+  <div id="app" v-if="bitBucketAccessToken">
     <PullRequestList />
   </div>
 </template>
@@ -15,14 +15,17 @@ export default {
     PullRequestList,
   },
   created: async function () {
-    const accessToken = await fetchAccessToken(process.env.VUE_APP_ACCESS_KEY, process.env.VUE_APP_ACCESS_SECRET)
-    this.setAccessToken(accessToken)
+    await this.fetchBitBucketAccessToken()
   },
   computed: {
-    ...mapGetters(["accessToken"])
+    ...mapGetters(["bitBucketAccessToken"])
   },
   methods: {
-    ...mapMutations(["setAccessToken"]),
+    ...mapMutations(["setBitBucketAccessToken"]),
+    fetchBitBucketAccessToken: async function () {
+      const token = await fetchAccessToken(process.env.VUE_APP_BITBUCKET_ACCESS_KEY, process.env.VUE_APP_BITBUCKET_ACCESS_SECRET)
+      this.setBitBucketAccessToken(token)
+    },
   }
 }
 </script>

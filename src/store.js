@@ -5,16 +5,16 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
-        accessToken: '',
+        bitBucketAccessToken: '',
     },
     getters: {
-        accessToken: (state) => {
-            return state.accessToken
+        bitBucketAccessToken: (state) => {
+            return state.bitBucketAccessToken
         },
     },
     mutations: {
-        setAccessToken: (state, payload) => {
-            state.accessToken = payload
+        setBitBucketAccessToken: (state, payload) => {
+            state.bitBucketAccessToken = payload
         },
     },
 })

@@ -28,15 +28,15 @@ export default {
         }
     },
     mounted: async function () {
-        const result = await fetchPullRequests(this.accessToken, 'yanapiidxer', 'vuetestproject')
+        const result = await fetchPullRequests(this.bitBucketAccessToken, 'yanapiidxer', 'vuetestproject')
         this.list = result.data.values
     },
     computed: {
-        ...mapGetters(['accessToken']),
+        ...mapGetters(['bitBucketAccessToken']),
     },
     methods: {
         async addComment(prId) {
-            const result = await addCommentToPullRequest(this.accessToken, 'yanapiidxer', 'vuetestproject', prId, "コメント")
+            const result = await addCommentToPullRequest(this.bitBucketAccessToken, 'yanapiidxer', 'vuetestproject', prId, "コメント")
             if (result.status !== 201) {
                 alert("コメントに失敗しました")
                 return
