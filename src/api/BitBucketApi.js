@@ -71,3 +71,27 @@ export const fetchPullRequests = (accessToken, ownerName, repositoryName) => {
         }
     })
 }
+
+/**
+ * プルリクにコメントする
+ * @param {String} accessToken アクセストークン
+ * @param {String} ownerName 所有者名
+ * @param {String} repositoryName リポジトリ名
+ * @param {String} pullRequestId プルリクのID
+ * @param {String} comment コメント
+ */
+export const addCommentToPullRequest = (accessToken, ownerName, repositoryName, pullRequestId, comment) => {
+    const params = {
+        content: {
+            raw: comment,
+        },
+    }
+    return bitBucketApi.post(`repositories/${ownerName}/${repositoryName}/pullrequests/${pullRequestId}/comments`, params,
+    {
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+    })
+}
