@@ -1,13 +1,18 @@
 <template>
     <div>
-        <table border="1">
-            <tr v-for="item in list" :key="item.id">
-                <td>{{ item.title }}</td>
-                <td>
-                    <button @click="addComment(item.id)">コメント</button>
-                </td>
-            </tr>
-        </table>
+        <template v-if="list.length">
+            <table border="1">
+                <tr v-for="item in list" :key="item.id">
+                    <td>{{ item.title }}</td>
+                    <td>
+                        <button @click="addComment(item.id)">コメント</button>
+                    </td>
+                </tr>
+            </table>
+        </template>
+        <template v-else>
+            マージされていないプルリクエストがありません
+        </template>
     </div>
 </template>
 
@@ -25,7 +30,6 @@ export default {
     mounted: async function () {
         const result = await fetchPullRequests(this.accessToken, 'yanapiidxer', 'vuetestproject')
         this.list = result.data.values
-        console.log(this.list)
     },
     computed: {
         ...mapGetters(['accessToken']),
